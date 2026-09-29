@@ -12,14 +12,14 @@ export default function Footer() {
               <Mountain className="h-5 w-5 text-accent" strokeWidth={1.5} />
               <span className="font-display text-lg text-surface">Alpine</span>
             </Link>
-            <p className="mt-4 text-body-sm leading-relaxed text-ink-subtle" style={{ color: '#6B6B6B' }}>
+            <p className="mt-4 text-body-sm leading-relaxed text-[#6B6B6B]">
               Discover and book extraordinary resorts, villas, and unique stays around the world.
             </p>
           </div>
 
           {/* Explore */}
           <div>
-            <p className="poet-overline" style={{ color: '#6B6B6B' }}>Explore</p>
+            <p className="text-overline uppercase tracking-wider text-[#6B6B6B] font-semibold">Explore</p>
             <ul className="mt-4 space-y-3 text-body-sm">
               {[
                 { label: 'All Properties', to: '/properties' },
@@ -28,7 +28,7 @@ export default function Footer() {
                 { label: 'Cabins', to: '/properties?type=cabin' },
               ].map((link) => (
                 <li key={link.to}>
-                  <Link to={link.to} className="text-line transition-colors duration-sharp hover:text-surface">{link.label}</Link>
+                  <Link to={link.to} className="text-[#8A8A82] transition-colors duration-sharp hover:text-surface">{link.label}</Link>
                 </li>
               ))}
             </ul>
@@ -36,11 +36,11 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <p className="poet-overline" style={{ color: '#6B6B6B' }}>Company</p>
+            <p className="text-overline uppercase tracking-wider text-[#6B6B6B] font-semibold">Company</p>
             <ul className="mt-4 space-y-3 text-body-sm">
               {['About Us', 'Careers', 'Privacy Policy', 'Terms of Service'].map((item) => (
                 <li key={item}>
-                  <span className="text-line cursor-default">{item}</span>
+                  <span className="text-[#8A8A82] cursor-default">{item}</span>
                 </li>
               ))}
             </ul>
@@ -48,8 +48,8 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <p className="poet-overline" style={{ color: '#6B6B6B' }}>Contact</p>
-            <ul className="mt-4 space-y-3 text-body-sm text-line">
+            <p className="text-overline uppercase tracking-wider text-[#6B6B6B] font-semibold">Contact</p>
+            <ul className="mt-4 space-y-3 text-body-sm text-[#8A8A82]">
               <li>hello@alpine.com</li>
               <li>+1 (555) 123-4567</li>
               <li>San Francisco, CA</li>
@@ -57,8 +57,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="poet-divider mt-12 pt-8 text-center" style={{ borderColor: '#3D3D3D' }}>
-          <p className="text-overline tracking-wider" style={{ color: '#6B6B6B' }}>
+        <div className="mt-12 border-t border-[#2C2C28] pt-8 text-center">
+          <p className="text-overline tracking-wider text-[#6B6B6B]">
             &copy; {new Date().getFullYear()} Alpine. All rights reserved.
           </p>
         </div>

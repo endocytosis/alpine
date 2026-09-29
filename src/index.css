@@ -8,24 +8,42 @@
   --poet-font-display: 'Bodoni Moda', 'Didot', 'Bodoni MT', serif;
   --poet-font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
 
-  --poet-color-canvas: #F9F8F4;
-  --poet-color-ink: #0A0A0A;
-  --poet-color-ink-muted: #3D3D3D;
-  --poet-color-ink-subtle: #6B6B6B;
-  --poet-color-line: #D6D3CD;
-  --poet-color-line-strong: #0A0A0A;
-  --poet-color-surface: #FFFFFF;
-  --poet-color-surface-alt: #EBE8E2;
-  --poet-color-accent: #00E870;
-  --poet-color-accent-ink: #042012;
-  --poet-color-shock: #FF2BD6;
-  --poet-color-shock-ink: #1A0014;
-  --poet-color-danger: #E8123E;
-  --poet-color-warning: #FFB200;
+  /* Colors stored as space-separated RGB channels for Tailwind opacity support */
+  --poet-color-canvas: 249 248 244;
+  --poet-color-ink: 10 10 10;
+  --poet-color-ink-muted: 61 61 61;
+  --poet-color-ink-subtle: 107 107 107;
+  --poet-color-line: 214 211 205;
+  --poet-color-line-strong: 10 10 10;
+  --poet-color-surface: 255 255 255;
+  --poet-color-surface-alt: 235 232 226;
+  --poet-color-accent: 0 232 112;
+  --poet-color-accent-ink: 4 32 18;
+  --poet-color-shock: 255 43 214;
+  --poet-color-shock-ink: 26 0 20;
+  --poet-color-danger: 232 18 62;
+  --poet-color-warning: 255 178 0;
 
   --poet-transition-fast: 80ms;
   --poet-transition-sharp: 120ms;
   --poet-section: clamp(4rem, 12vw, 10rem);
+}
+
+.dark {
+  --poet-color-canvas: 17 17 16;
+  --poet-color-ink: 238 238 232;
+  --poet-color-ink-muted: 181 181 173;
+  --poet-color-ink-subtle: 138 138 130;
+  --poet-color-line: 44 44 40;
+  --poet-color-line-strong: 238 238 232;
+  --poet-color-surface: 26 26 24;
+  --poet-color-surface-alt: 34 34 32;
+  --poet-color-accent: 0 232 112;
+  --poet-color-accent-ink: 4 32 18;
+  --poet-color-shock: 255 43 214;
+  --poet-color-shock-ink: 26 0 20;
+  --poet-color-danger: 255 77 106;
+  --poet-color-warning: 255 178 0;
 }
 
 @layer base {
@@ -37,15 +55,15 @@
     -moz-osx-font-smoothing: grayscale;
   }
   body {
-    background-color: var(--poet-color-canvas);
-    color: var(--poet-color-ink);
+    background-color: rgb(var(--poet-color-canvas));
+    color: rgb(var(--poet-color-ink));
   }
   ::selection {
-    background-color: var(--poet-color-accent);
-    color: var(--poet-color-accent-ink);
+    background-color: rgb(var(--poet-color-accent));
+    color: rgb(var(--poet-color-accent-ink));
   }
   :focus-visible {
-    outline: 2px solid var(--poet-color-accent);
+    outline: 2px solid rgb(var(--poet-color-accent));
     outline-offset: 2px;
   }
 }
@@ -63,7 +81,7 @@
     font-weight: 400;
     letter-spacing: -0.02em;
     line-height: 0.92;
-    -webkit-text-stroke: 1.5px var(--poet-color-ink);
+    -webkit-text-stroke: 1.5px rgb(var(--poet-color-ink));
     -webkit-text-fill-color: transparent;
   }
 
@@ -109,7 +127,7 @@
     border-radius: 0;
   }
   .poet-btn-danger:hover {
-    @apply bg-danger/5;
+    background-color: rgb(var(--poet-color-danger) / 0.05);
   }
 
   /* Poet input */
@@ -120,7 +138,7 @@
   }
   .poet-input:focus {
     @apply border-line-strong outline-none;
-    box-shadow: 0 0 0 2px var(--poet-color-canvas), 0 0 0 4px var(--poet-color-accent);
+    box-shadow: 0 0 0 2px rgb(var(--poet-color-canvas)), 0 0 0 4px rgb(var(--poet-color-accent));
   }
   .poet-input:disabled {
     @apply bg-surface-alt text-ink-subtle cursor-not-allowed;
@@ -148,10 +166,12 @@
     @apply poet-badge bg-accent text-accent-ink;
   }
   .poet-badge-danger {
-    @apply poet-badge bg-danger/10 text-danger;
+    @apply poet-badge text-danger;
+    background-color: rgb(var(--poet-color-danger) / 0.1);
   }
   .poet-badge-warning {
-    @apply poet-badge bg-warning/10 text-warning;
+    @apply poet-badge text-warning;
+    background-color: rgb(var(--poet-color-warning) / 0.1);
   }
 
   /* Poet stat */
@@ -178,13 +198,16 @@
     @apply poet-alert border-line bg-surface-alt text-ink-muted;
   }
   .poet-alert-accent {
-    @apply poet-alert border-accent bg-accent/5 text-accent-ink;
+    @apply poet-alert border-accent text-accent-ink;
+    background-color: rgb(var(--poet-color-accent) / 0.05);
   }
   .poet-alert-danger {
-    @apply poet-alert border-danger bg-danger/5 text-danger;
+    @apply poet-alert border-danger text-danger;
+    background-color: rgb(var(--poet-color-danger) / 0.05);
   }
   .poet-alert-warning {
-    @apply poet-alert border-warning bg-warning/5 text-ink;
+    @apply poet-alert border-warning text-ink;
+    background-color: rgb(var(--poet-color-warning) / 0.05);
   }
 
   /* Poet overline */
@@ -242,8 +265,8 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--poet-color-line);
+  background: rgb(var(--poet-color-line));
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--poet-color-ink-subtle);
+  background: rgb(var(--poet-color-ink-subtle));
 }

@@ -1,10 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { Mountain, Menu, X, User, LogOut, LayoutDashboard } from 'lucide-react';
+import { Mountain, Menu, X, User, LogOut, LayoutDashboard, Sun, Moon } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
+import { useThemeMode } from '@/contexts/ThemeContext';
 
 export default function Header() {
   const { user, profile, signOut } = useAuth();
+  const { dark, toggle } = useThemeMode();
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -27,8 +29,16 @@ export default function Header() {
         <nav className="hidden items-center gap-1 md:flex">
           <Link to="/properties" className="poet-btn-ghost text-body-sm">Explore</Link>
 
+          <button
+            onClick={toggle}
+            className="poet-btn-ghost !px-2.5"
+            aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {dark ? <Sun className="h-4 w-4" strokeWidth={1.5} /> : <Moon className="h-4 w-4" strokeWidth={1.5} />}
+          </button>
+
           {user ? (
-            <div className="relative ml-3">
+            <div className="relative ml-1">
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className="flex items-center gap-2 border border-line px-3 py-1.5 text-body-sm font-medium text-ink transition-colors duration-sharp hover:border-line-strong"
@@ -80,9 +90,18 @@ export default function Header() {
         </nav>
 
         {/* Mobile toggle */}
-        <button className="md:hidden p-2 text-ink hover:bg-surface-alt transition-colors duration-fast" onClick={() => setMobileOpen(!mobileOpen)}>
-          {mobileOpen ? <X className="h-5 w-5" strokeWidth={1.5} /> : <Menu className="h-5 w-5" strokeWidth={1.5} />}
-        </button>
+        <div className="flex items-center gap-1 md:hidden">
+          <button
+            onClick={toggle}
+            className="p-2 text-ink hover:bg-surface-alt transition-colors duration-fast"
+            aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {dark ? <Sun className="h-5 w-5" strokeWidth={1.5} /> : <Moon className="h-5 w-5" strokeWidth={1.5} />}
+          </button>
+          <button className="p-2 text-ink hover:bg-surface-alt transition-colors duration-fast" onClick={() => setMobileOpen(!mobileOpen)}>
+            {mobileOpen ? <X className="h-5 w-5" strokeWidth={1.5} /> : <Menu className="h-5 w-5" strokeWidth={1.5} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}

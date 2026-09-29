@@ -1,6 +1,12 @@
 /** @type {import('tailwindcss').Config} */
+
+function colorVar(name) {
+  return `rgb(var(--poet-color-${name}) / <alpha-value>)`;
+}
+
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
@@ -8,20 +14,20 @@ export default {
         sans: ['"DM Sans"', 'system-ui', '-apple-system', 'sans-serif'],
       },
       colors: {
-        canvas: '#F9F8F4',
-        ink: '#0A0A0A',
-        'ink-muted': '#3D3D3D',
-        'ink-subtle': '#6B6B6B',
-        line: '#D6D3CD',
-        'line-strong': '#0A0A0A',
-        surface: '#FFFFFF',
-        'surface-alt': '#EBE8E2',
-        accent: '#00E870',
-        'accent-ink': '#042012',
-        shock: '#FF2BD6',
-        'shock-ink': '#1A0014',
-        danger: '#E8123E',
-        warning: '#FFB200',
+        canvas: colorVar('canvas'),
+        ink: colorVar('ink'),
+        'ink-muted': colorVar('ink-muted'),
+        'ink-subtle': colorVar('ink-subtle'),
+        line: colorVar('line'),
+        'line-strong': colorVar('line-strong'),
+        surface: colorVar('surface'),
+        'surface-alt': colorVar('surface-alt'),
+        accent: colorVar('accent'),
+        'accent-ink': colorVar('accent-ink'),
+        shock: colorVar('shock'),
+        'shock-ink': colorVar('shock-ink'),
+        danger: colorVar('danger'),
+        warning: colorVar('warning'),
       },
       spacing: {
         section: 'clamp(4rem, 12vw, 10rem)',
@@ -50,8 +56,8 @@ export default {
         'measure-wide': '48rem',
       },
       boxShadow: {
-        line: '0 0 0 1px var(--poet-color-line)',
-        'focus-ring': '0 0 0 2px var(--poet-color-canvas), 0 0 0 4px var(--poet-color-accent)',
+        line: '0 0 0 1px rgb(var(--poet-color-line))',
+        'focus-ring': '0 0 0 2px rgb(var(--poet-color-canvas)), 0 0 0 4px rgb(var(--poet-color-accent))',
       },
       transitionDuration: {
         fast: '80ms',
