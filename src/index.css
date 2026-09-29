@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --poet-font-display: 'Bodoni Moda', 'Didot', 'Bodoni MT', serif;
+  --poet-font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+
+  --poet-color-canvas: #F9F8F4;
+  --poet-color-ink: #0A0A0A;
+  --poet-color-ink-muted: #3D3D3D;
+  --poet-color-ink-subtle: #6B6B6B;
+  --poet-color-line: #D6D3CD;
+  --poet-color-line-strong: #0A0A0A;
+  --poet-color-surface: #FFFFFF;
+  --poet-color-surface-alt: #EBE8E2;
+  --poet-color-accent: #00E870;
+  --poet-color-accent-ink: #042012;
+  --poet-color-shock: #FF2BD6;
+  --poet-color-shock-ink: #1A0014;
+  --poet-color-danger: #E8123E;
+  --poet-color-warning: #FFB200;
+
+  --poet-transition-fast: 80ms;
+  --poet-transition-sharp: 120ms;
+  --poet-section: clamp(4rem, 12vw, 10rem);
+}
+
+@layer base {
+  html {
+    font-family: var(--poet-font-sans);
+    font-size: 1rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    background-color: var(--poet-color-canvas);
+    color: var(--poet-color-ink);
+  }
+  ::selection {
+    background-color: var(--poet-color-accent);
+    color: var(--poet-color-accent-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--poet-color-accent);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Poet display typography */
+  .poet-display {
+    font-family: var(--poet-font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 0.92;
+  }
+  .poet-display-outline {
+    font-family: var(--poet-font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 0.92;
+    -webkit-text-stroke: 1.5px var(--poet-color-ink);
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Poet button variants */
+  .poet-btn {
+    @apply inline-flex items-center justify-center gap-2 font-sans font-semibold transition-all;
+    transition-duration: var(--poet-transition-sharp);
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .poet-btn-primary {
+    @apply poet-btn px-6 py-3 text-body-sm bg-ink text-canvas;
+    border-radius: 0;
+  }
+  .poet-btn-primary:hover {
+    @apply bg-ink-muted;
+  }
+  .poet-btn-primary:disabled {
+    @apply opacity-40 cursor-not-allowed;
+  }
+  .poet-btn-ghost {
+    @apply poet-btn px-4 py-2 text-body-sm text-ink-muted;
+    border-radius: 0;
+  }
+  .poet-btn-ghost:hover {
+    @apply bg-surface-alt text-ink;
+  }
+  .poet-btn-outline {
+    @apply poet-btn px-6 py-3 text-body-sm text-ink border border-line;
+    border-radius: 0;
+  }
+  .poet-btn-outline:hover {
+    @apply border-line-strong;
+  }
+  .poet-btn-accent {
+    @apply poet-btn px-6 py-3 text-body-sm bg-accent text-accent-ink;
+    border-radius: 0;
+  }
+  .poet-btn-accent:hover {
+    opacity: 0.88;
+  }
+  .poet-btn-danger {
+    @apply poet-btn px-4 py-2 text-body-sm text-danger;
+    border-radius: 0;
+  }
+  .poet-btn-danger:hover {
+    @apply bg-danger/5;
+  }
+
+  /* Poet input */
+  .poet-input {
+    @apply block w-full border border-line bg-surface px-4 py-3 text-body-sm text-ink placeholder:text-ink-subtle transition-colors;
+    border-radius: 0;
+    transition-duration: var(--poet-transition-sharp);
+  }
+  .poet-input:focus {
+    @apply border-line-strong outline-none;
+    box-shadow: 0 0 0 2px var(--poet-color-canvas), 0 0 0 4px var(--poet-color-accent);
+  }
+  .poet-input:disabled {
+    @apply bg-surface-alt text-ink-subtle cursor-not-allowed;
+  }
+
+  /* Poet card */
+  .poet-card {
+    @apply bg-surface border border-line overflow-hidden;
+    border-radius: 0;
+    transition: border-color var(--poet-transition-sharp) cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .poet-card-interactive:hover {
+    @apply border-line-strong;
+  }
+
+  /* Poet badge */
+  .poet-badge {
+    @apply inline-flex items-center px-2 py-0.5 text-overline font-semibold uppercase tracking-wider;
+    border-radius: 2px;
+  }
+  .poet-badge-neutral {
+    @apply poet-badge bg-surface-alt text-ink-muted;
+  }
+  .poet-badge-accent {
+    @apply poet-badge bg-accent text-accent-ink;
+  }
+  .poet-badge-danger {
+    @apply poet-badge bg-danger/10 text-danger;
+  }
+  .poet-badge-warning {
+    @apply poet-badge bg-warning/10 text-warning;
+  }
+
+  /* Poet stat */
+  .poet-stat {
+    @apply flex flex-col gap-1;
+  }
+  .poet-stat-label {
+    @apply text-overline uppercase tracking-wider text-ink-subtle;
+  }
+  .poet-stat-value {
+    @apply text-heading-2 font-display;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .poet-stat-hint {
+    @apply text-body-sm text-ink-subtle;
+  }
+
+  /* Poet alert */
+  .poet-alert {
+    @apply border-l-2 px-4 py-3 text-body-sm;
+  }
+  .poet-alert-neutral {
+    @apply poet-alert border-line bg-surface-alt text-ink-muted;
+  }
+  .poet-alert-accent {
+    @apply poet-alert border-accent bg-accent/5 text-accent-ink;
+  }
+  .poet-alert-danger {
+    @apply poet-alert border-danger bg-danger/5 text-danger;
+  }
+  .poet-alert-warning {
+    @apply poet-alert border-warning bg-warning/5 text-ink;
+  }
+
+  /* Poet overline */
+  .poet-overline {
+    @apply text-overline uppercase tracking-wider text-ink-subtle font-semibold;
+  }
+
+  /* Poet divider */
+  .poet-divider {
+    @apply border-t border-line;
+  }
+  .poet-divider-strong {
+    @apply border-t border-line-strong;
+  }
+
+  /* Poet prose container */
+  .poet-prose {
+    max-width: 38rem;
+  }
+  .poet-prose-wide {
+    max-width: 48rem;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 120ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .animate-slide-up {
+    animation: slideUp 120ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--poet-color-line);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--poet-color-ink-subtle);
+}
