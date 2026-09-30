@@ -63,7 +63,7 @@ export default function HomePage() {
           <div className="max-w-3xl">
             <p className="poet-overline text-accent mb-6">Mountain retreats across the American West & New England</p>
             <h1 className="poet-display text-display-lg text-surface">
-              Seek higher<br />
+              Seek safer<br />
               <span className="italic">ground</span>
             </h1>
             <p className="mt-6 text-body-lg text-line max-w-xl" style={{ lineHeight: 1.7 }}>
